@@ -1,324 +1,433 @@
-# 🚀 Ads Detector
+# Ads Detector
 
-> A professional local web application that scans websites from a CSV file and detects advertising technologies such as Google Ads, Meta Pixel, Microsoft UET, TikTok Pixel, LinkedIn Insight, and Pinterest Tag.
+A website intelligence platform that analyzes domains and detects advertising, tracking, and marketing technologies installed on websites.
+
+Ads Detector helps users identify:
+
+- Advertising platforms
+- Tracking pixels
+- Analytics technologies
+- Marketing tools
+- Website intelligence signals
+
+The system converts raw website data into actionable insights.
 
 ---
 
-# Overview
+# 🚀 Features
 
-Ads Detector is a desktop-first local web application designed for agencies, marketers, lead generation professionals, and cold email outreach teams.
+## CSV Domain Processing
 
-The application allows users to upload a CSV file containing website domains. It automatically visits each website using Playwright, analyzes its advertising technologies, and generates a detailed report with confidence scoring and export options.
+Upload thousands of domains and prepare them for scanning.
 
-Unlike simple tag checkers, Ads Detector is designed to become a complete prospect intelligence platform that helps users identify businesses actively investing in digital marketing.
+Features:
 
----
-
-# Core Features
-
-## CSV Processing
-
-- Upload CSV files containing website domains
-- Automatic domain column detection
-- Domain normalization
+- CSV upload
+- Domain validation
 - Duplicate removal
-- CSV validation
-- Scan queue generation
+- Data cleaning
+- Scan queue preparation
+
 
 ---
 
 ## Website Scanner
 
-- Automated browser scanning using Playwright
-- JavaScript rendering support
-- Dynamic website detection
-- Network request monitoring
-- Background scanning
-- Parallel processing
+Automatically analyze websites.
+
+The scanner collects:
+
+- HTML data
+- JavaScript files
+- Network requests
+- Cookies
+- Third-party resources
+
 
 ---
 
 ## Advertising Technology Detection
 
-Supports detection of:
+Detect installed technologies:
+
+Supported:
 
 - Google Ads
-- Google Conversion Tracking
+- Google Analytics
 - Meta Pixel
-- Microsoft UET
 - TikTok Pixel
+- Microsoft Advertising
 - LinkedIn Insight Tag
 - Pinterest Tag
+- Snap Pixel
+
 
 ---
 
-## Detection Intelligence
+## Result Management
 
-Every scanned website includes:
+Manage detected websites:
 
-- Detection Status
-- Detection Confidence
-- Detection Method
-- Detection Reason
-- Prospect Score
-- Platform Count
-- Scan Status
+- View results
+- Filter data
+- Star important prospects
+- Add notes
+- Add tags
+- Export selected results
 
----
-
-## Prospect Management
-
-Users can:
-
-- ⭐ Star prospects
-- 📝 Add notes
-- 🏷 Add custom tags
-- Search domains
-- Filter results
-- Sort results
-- Save prospect history
 
 ---
 
-## Smart Filtering
+## Local Database
 
-Filter results by:
+Uses:
 
-- Google Ads
-- Meta Pixel
-- TikTok Pixel
-- LinkedIn
-- Microsoft UET
-- Pinterest
-- Detection Confidence
-- Prospect Score
-- Scan Status
-- Starred Prospects
+```
+SQLite
+```
 
----
+Stores:
 
-## Export Options
-
-Export:
-
-- All Results
-- Filtered Results
-- Selected Results
-- Starred Results
-- Failed Scans
-
-Supported formats:
-
-- CSV
-- Excel
-- JSON
-
----
-
-# Dashboard
-
-The dashboard provides:
-
-- Total Scans
-- Total Websites
-- Ads Detected
-- Average Confidence
-- Scan Duration
-- Recent Activity
-- Previous Scan History
-
----
-
-# Local Database
-
-Ads Detector uses SQLite.
-
-The database stores:
-
-- Scan History
-- Scan Results
-- Application Settings
+- Scan history
+- Website records
+- Detection results
 - Notes
 - Tags
-- Starred Prospects
-- Statistics
+- Settings
 
-No external database server is required.
 
 ---
 
-# Technology Stack
+# 🏗️ System Architecture
 
-## Frontend
+High-level workflow:
 
-- React
-- Vite
-- Tailwind CSS
-- shadcn/ui
-
-## Backend
-
-- Python
-- FastAPI
-
-## Browser Automation
-
-- Playwright
-
-## Database
-
-- SQLite
-- SQLAlchemy
-
-## CSV Engine
-
-- Pandas
-
----
-
-# Typical Workflow
-
-```text
-Upload CSV
+```
+CSV Upload
 
 ↓
 
-Validate CSV
+CSV Processing Engine
 
 ↓
 
-Create Scan Queue
+Scan Queue
 
 ↓
 
-Launch Playwright
+Scanner Engine
 
 ↓
 
-Visit Website
+Detection Engine
 
 ↓
 
-Detect Advertising Technologies
+Database
 
 ↓
 
-Calculate Confidence
+Results Dashboard
 
 ↓
 
-Generate Prospect Score
-
-↓
-
-Store Results
-
-↓
-
-Search / Filter
-
-↓
-
-Export Results
+Export
 ```
 
 ---
 
-# Project Structure
+# 📂 Project Structure
 
-```text
-ads-detector-docs/
+```
+Ads_Detector/
 
-docs/
-requirements/
-diagrams/
-examples/
-prompts/
-assets/
+│
+├── requirements/
+│
+├── docs/
+│
+├── diagrams/
+│
+├── assets/
+│
+├── src/
+│
+└── README.md
 ```
 
 ---
 
-# Documentation
+# 📚 Documentation
 
-Project documentation is organized into multiple sections.
+## Product Documentation
 
-## Business Documentation
+- [Product Vision](docs/PRODUCT_VISION.md)
 
-- Product Vision
-- Project Scope
-- Business Requirements
-- User Stories
+- [Project Scope](docs/PROJECT_SCOPE.md)
+
+- [Project Decisions](docs/PROJECT_DECISIONS.md)
+
+- [Known Limitations](docs/KNOWN_LIMITATIONS.md)
+
+
+---
 
 ## Functional Requirements
 
-FR-001 through FR-020
+All feature specifications:
+
+```
+requirements/
+```
+
+Includes:
+
+- CSV Upload
+- Validation
+- Domain Detection
+- Scanning
+- Filtering
+- Exporting
+
+
+---
 
 ## Technical Documentation
 
-- System Architecture
-- Detection Engine
-- Scanner Engine
-- API Specification
-- CSV Processing Engine
-- Playwright Engine
+Architecture:
+
+[System Architecture](docs/SYSTEM_ARCHITECTURE.md)
+
+
+API:
+
+[API Specification](docs/API_SPECIFICATION.md)
+
+
+Database:
+
+[Database Design](docs/DATABASE_DESIGN.md)
+
+
+Scanner:
+
+[Scanner Engine](docs/SCANNER_ENGINE.md)
+
+
+Detection:
+
+[Detection Engine](docs/DETECTION_ENGINE.md)
+
+
+CSV Processing:
+
+[CSV Processing Engine](docs/CSV_PROCESSING_ENGINE.md)
+
+
+Testing:
+
+[Testing Strategy](docs/TESTING.md)
+
+
+Deployment:
+
+[Deployment Guide](docs/DEPLOYMENT.md)
+
+
+AI Development:
+
+[AI Implementation Rules](docs/AI_IMPLEMENTATION_RULES.md)
+
 
 ---
 
-# Roadmap
+# ⚙️ Installation
+
+## Requirements
+
+Required:
+
+```
+Python 3+
+
+SQLite
+
+Node.js (optional)
+
+Git
+```
+
+---
+
+## Clone Repository
+
+```
+git clone repository-url
+```
+
+Enter project:
+
+```
+cd Ads_Detector
+```
+
+---
+
+## Install Dependencies
+
+```
+pip install -r requirements.txt
+```
+
+---
+
+## Setup Database
+
+First run will create:
+
+```
+ads_detector.db
+```
+
+---
+
+## Start Application
+
+```
+python main.py
+```
+
+---
+
+# 🖥️ Usage
+
+Basic workflow:
+
+```
+1. Upload CSV file
+
+2. Validate domains
+
+3. Start scan
+
+4. Wait for analysis
+
+5. Review results
+
+6. Export leads
+```
+
+---
+
+# 📊 Example Use Case
+
+A user uploads:
+
+```
+10,000 business domains
+```
+
+Ads Detector:
+
+```
+Processes domains
+
+↓
+
+Scans websites
+
+↓
+
+Detects advertising tools
+
+↓
+
+Scores prospects
+
+↓
+
+Exports qualified results
+```
+
+---
+
+# 🛣️ Roadmap
 
 ## Version 1
 
-- Local Desktop Web App
-- CSV Upload
-- Website Scanner
-- Ads Detection
-- SQLite Database
-- Dashboard
-- Export System
+Completed:
 
-## Version 2
+- Documentation
+- Architecture planning
+- CSV processing design
+- Scanner design
+- Detection design
+- Database planning
 
-- AI Detection Improvements
-- Better Confidence Scoring
-- Additional Marketing Technology Detection
-- Resume Scans
-- Scheduled Scans
-
-## Version 3
-
-- AI Prospect Analysis
-- Website Quality Scoring
-- Conversion Opportunity Analysis
-- Team Workspace
-- Cloud Synchronization
 
 ---
 
-# License
+## Version 2
+
+Planned:
+
+- Full application interface
+- Advanced scanning
+- More detection rules
+- Better filtering
+
+
+---
+
+## Version 3
+
+Future:
+
+- Cloud version
+- Team accounts
+- API access
+- CRM integration
+- AI lead analysis
+
+
+---
+
+# 🔒 Security
+
+Ads Detector follows:
+
+- Secure file processing
+- Browser isolation
+- Input validation
+- Database protection
+- Error logging
+
+
+---
+
+# 🤝 Contribution
+
+Contributions are welcome.
+
+Before making changes:
+
+1. Read documentation
+
+2. Follow architecture rules
+
+3. Update relevant docs
+
+4. Add tests
+
+
+---
+
+# 📄 License
 
 This project is licensed under the MIT License.
 
 ---
 
-# Contributing
+# ⭐ Project Goal
 
-Contributions, feature suggestions, and improvements are welcome.
-
-Please read CONTRIBUTING.md before submitting pull requests.
-
----
-
-# Status
-
-🚧 Documentation in Progress
-
-Current Version: 1.0 Documentation
-
-Project Type:
-
-Local Desktop Web Application
-
-Development Status:
-
-Planning & Documentation Phase
+The goal of Ads Detector is to become a complete website intelligence platform that helps users understand the technology landscape behind websites.
