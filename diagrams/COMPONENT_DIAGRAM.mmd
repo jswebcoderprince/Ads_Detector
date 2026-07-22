@@ -1,0 +1,27 @@
+flowchart LR
+    subgraph Frontend
+        UI[User Interface]
+    end
+
+    subgraph Backend Modules
+        CSVP[CSV Processor]
+        SCANE[Scanner Engine]
+        PLAY[Playwright Engine]
+        DETE[Detection Engine]
+        CONF[Confidence Scoring]
+        DBL[Database Layer]
+        EXPS[Export System]
+    end
+
+    UI -->|upload CSV| CSVP
+    CSVP -->|normalized domains| DBL
+    DBL -->|scan queue| SCANE
+    SCANE --> PLAY
+    PLAY -->|captured evidence| DETE
+    DETE --> CONF
+    CONF -->|scores + evidence| DBL
+    DBL -->|results| UI
+    UI -->|filter + star + tag| DBL
+    UI -->|export request| EXPS
+    EXPS -->|query filtered results| DBL
+    EXPS -->|file| UI

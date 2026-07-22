@@ -1,0 +1,22 @@
+flowchart TD
+    A[Captured Scan Data] --> B{Detection Rule Matching}
+    B --> C1[Advertising Rules]
+    B --> C2[Tracking Pixel Rules]
+    B --> C3[Analytics Rules]
+
+    C1 --> D[Matched Evidence Collected]
+    C2 --> D
+    C3 --> D
+
+    D --> E[Evidence Weighted by Type]
+    E --> F[Diminishing-Returns Aggregation]
+    F --> G[Raw Score Normalized 0-100]
+    G --> H{Score Range}
+    H -->|75-100| I[High Confidence]
+    H -->|40-74| J[Medium Confidence]
+    H -->|1-39| K[Low Confidence]
+    H -->|0| L[No Detection - Excluded from Results]
+
+    I --> M[Persisted to Database]
+    J --> M
+    K --> M

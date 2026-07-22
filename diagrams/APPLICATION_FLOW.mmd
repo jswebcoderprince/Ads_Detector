@@ -1,0 +1,16 @@
+flowchart TD
+    A[CSV Upload] --> B[CSV Validation]
+    B --> C[Domain Processing]
+    C --> D[Scan Queue]
+    D --> E[Website Scanner]
+    E --> F[Detection Engine]
+    F --> G[Confidence Scoring]
+    G --> H[Database Storage]
+    H --> I[Dashboard]
+    I --> J[Filtering]
+    J --> K[Star / Notes / Tags]
+    K --> L[Export Results]
+
+    B -- invalid rows --> B1[Excluded Rows Report]
+    E -- timeout / blocked --> E1[Scan Marked Failed]
+    E1 --> H

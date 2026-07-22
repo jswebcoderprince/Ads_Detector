@@ -1,0 +1,29 @@
+flowchart TD
+    UI[User Interface]
+    CORE[Application Core]
+
+    subgraph Processing Modules
+        CSV[CSV Processor]
+        SCAN[Scanner Engine]
+        DET[Detection Engine]
+        SCORE[Confidence Scoring]
+        EXP[Export System]
+    end
+
+    DB[(Database Layer - SQLite)]
+
+    UI --> CORE
+    CORE --> CSV
+    CORE --> SCAN
+    CORE --> EXP
+
+    CSV --> DB
+    SCAN --> DET
+    DET --> SCORE
+    SCORE --> DB
+
+    DB --> UI
+    EXP --> DB
+    EXP --> UI
+
+    CORE --> DB

@@ -1,0 +1,69 @@
+erDiagram
+    SCAN_SESSION ||--o{ DOMAIN : contains
+    DOMAIN ||--o{ SCAN : "has history"
+    SCAN ||--o{ DETECTION : produces
+    DETECTION ||--o{ EVIDENCE : "supported by"
+    DOMAIN ||--o{ TAG_ASSIGNMENT : has
+    TAG ||--o{ TAG_ASSIGNMENT : "assigned via"
+    DOMAIN ||--o| NOTE : has
+    DOMAIN ||--o| STAR : has
+
+    SCAN_SESSION {
+        int id PK
+        string name
+        datetime created_at
+    }
+
+    DOMAIN {
+        int id PK
+        int scan_session_id FK
+        string normalized_domain
+        datetime created_at
+    }
+
+    SCAN {
+        int id PK
+        int domain_id FK
+        string status
+        datetime started_at
+        datetime completed_at
+    }
+
+    DETECTION {
+        int id PK
+        int scan_id FK
+        string technology_name
+        string category
+        int confidence_score
+    }
+
+    EVIDENCE {
+        int id PK
+        int detection_id FK
+        string evidence_type
+        string evidence_value
+    }
+
+    TAG {
+        int id PK
+        string name
+    }
+
+    TAG_ASSIGNMENT {
+        int id PK
+        int domain_id FK
+        int tag_id FK
+    }
+
+    NOTE {
+        int id PK
+        int domain_id FK
+        string content
+        datetime updated_at
+    }
+
+    STAR {
+        int id PK
+        int domain_id FK
+        boolean is_starred
+    }
