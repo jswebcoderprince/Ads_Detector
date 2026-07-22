@@ -1,204 +1,324 @@
-# Ads Detector
+# 🚀 Ads Detector
 
-> Enterprise-grade local web application for detecting advertising
-> technologies across websites using Playwright.
+> A professional local web application that scans websites from a CSV file and detects advertising technologies such as Google Ads, Meta Pixel, Microsoft UET, TikTok Pixel, LinkedIn Insight, and Pinterest Tag.
 
-------------------------------------------------------------------------
+---
 
 # Overview
 
-Ads Detector is a local web application designed for agencies,
-marketers, researchers, and sales teams who need to determine whether
-websites are actively using online advertising technologies.
+Ads Detector is a desktop-first local web application designed for agencies, marketers, lead generation professionals, and cold email outreach teams.
 
-The application accepts a CSV file containing website domains and
-automatically scans each website using a real Chromium browser powered
-by Playwright.
+The application allows users to upload a CSV file containing website domains. It automatically visits each website using Playwright, analyzes its advertising technologies, and generates a detailed report with confidence scoring and export options.
 
-Unlike simple HTML scrapers, Ads Detector renders JavaScript before
-analyzing the page, allowing detection of dynamically loaded advertising
-technologies.
+Unlike simple tag checkers, Ads Detector is designed to become a complete prospect intelligence platform that helps users identify businesses actively investing in digital marketing.
 
-The application focuses exclusively on detecting advertising
-technologies.
+---
 
-Supported platforms:
+# Core Features
 
--   Google Ads
--   Google Remarketing
--   Meta Pixel
--   Microsoft UET
--   TikTok Pixel
--   LinkedIn Insight Tag
--   Pinterest Tag
+## CSV Processing
 
-------------------------------------------------------------------------
+- Upload CSV files containing website domains
+- Automatic domain column detection
+- Domain normalization
+- Duplicate removal
+- CSV validation
+- Scan queue generation
 
-# Project Goals
+---
 
--   Upload a CSV containing domains.
--   Automatically identify the domain column.
--   Scan websites using Playwright.
--   Execute JavaScript before detection.
--   Detect supported advertising technologies.
--   Continue scanning even if websites fail.
--   Export a CSV report.
--   Run entirely on the user's local computer.
+## Website Scanner
 
-------------------------------------------------------------------------
+- Automated browser scanning using Playwright
+- JavaScript rendering support
+- Dynamic website detection
+- Network request monitoring
+- Background scanning
+- Parallel processing
 
-# Target Users
+---
 
--   Digital Agencies
--   Cold Email Agencies
--   Lead Generation Teams
--   Marketing Consultants
--   PPC Specialists
--   Growth Agencies
--   Researchers
+## Advertising Technology Detection
 
-------------------------------------------------------------------------
+Supports detection of:
 
-# Project Scope
+- Google Ads
+- Google Conversion Tracking
+- Meta Pixel
+- Microsoft UET
+- TikTok Pixel
+- LinkedIn Insight Tag
+- Pinterest Tag
 
-## Included
+---
 
--   CSV Upload
--   Automatic Domain Detection
--   Playwright Browser Automation
--   Parallel Website Scanning
--   Advertising Technology Detection
--   Progress Tracking
--   CSV Export
--   Local Web Application
+## Detection Intelligence
 
-## Excluded
+Every scanned website includes:
 
--   SEO Audit
--   Performance Analysis
--   AI Features
--   CRM
--   Contact Extraction
--   Authentication
--   Database
+- Detection Status
+- Detection Confidence
+- Detection Method
+- Detection Reason
+- Prospect Score
+- Platform Count
+- Scan Status
 
-------------------------------------------------------------------------
+---
 
-# Supported Advertising Platforms
+## Prospect Management
 
-  Platform             Supported
-  -------------------- -----------
-  Google Ads           ✅
-  Google Remarketing   ✅
-  Meta Pixel           ✅
-  Microsoft UET        ✅
-  TikTok Pixel         ✅
-  LinkedIn Insight     ✅
-  Pinterest Tag        ✅
+Users can:
 
-------------------------------------------------------------------------
+- ⭐ Star prospects
+- 📝 Add notes
+- 🏷 Add custom tags
+- Search domains
+- Filter results
+- Sort results
+- Save prospect history
 
-# High-Level Workflow
+---
 
-``` text
-Upload CSV
-    ↓
-Validate CSV
-    ↓
-Detect Domain Column
-    ↓
-Create Scan Queue
-    ↓
-Launch Playwright Workers
-    ↓
-Render Website
-    ↓
-Run Detection Engine
-    ↓
-Store Results
-    ↓
-Export CSV
-```
+## Smart Filtering
 
-------------------------------------------------------------------------
+Filter results by:
+
+- Google Ads
+- Meta Pixel
+- TikTok Pixel
+- LinkedIn
+- Microsoft UET
+- Pinterest
+- Detection Confidence
+- Prospect Score
+- Scan Status
+- Starred Prospects
+
+---
+
+## Export Options
+
+Export:
+
+- All Results
+- Filtered Results
+- Selected Results
+- Starred Results
+- Failed Scans
+
+Supported formats:
+
+- CSV
+- Excel
+- JSON
+
+---
+
+# Dashboard
+
+The dashboard provides:
+
+- Total Scans
+- Total Websites
+- Ads Detected
+- Average Confidence
+- Scan Duration
+- Recent Activity
+- Previous Scan History
+
+---
+
+# Local Database
+
+Ads Detector uses SQLite.
+
+The database stores:
+
+- Scan History
+- Scan Results
+- Application Settings
+- Notes
+- Tags
+- Starred Prospects
+- Statistics
+
+No external database server is required.
+
+---
 
 # Technology Stack
 
 ## Frontend
 
--   React
--   Vite
--   Tailwind CSS
+- React
+- Vite
+- Tailwind CSS
+- shadcn/ui
 
 ## Backend
 
--   Python
--   FastAPI
+- Python
+- FastAPI
 
 ## Browser Automation
 
--   Playwright Chromium
+- Playwright
 
-## CSV Processing
+## Database
 
--   Pandas
+- SQLite
+- SQLAlchemy
 
-------------------------------------------------------------------------
+## CSV Engine
 
-# Repository Structure
+- Pandas
 
-``` text
-ads-detector-docs/
-├── README.md
-├── PRODUCT_VISION.md
-├── PROJECT_SCOPE.md
-├── FUNCTIONAL_REQUIREMENTS.md
-├── SYSTEM_ARCHITECTURE.md
-├── API_SPECIFICATION.md
-├── SCANNER_ENGINE.md
-├── DETECTION_ENGINE.md
-├── PLAYWRIGHT_ENGINE.md
-├── CODING_STANDARDS.md
-└── AI_IMPLEMENTATION_RULES.md
+---
+
+# Typical Workflow
+
+```text
+Upload CSV
+
+↓
+
+Validate CSV
+
+↓
+
+Create Scan Queue
+
+↓
+
+Launch Playwright
+
+↓
+
+Visit Website
+
+↓
+
+Detect Advertising Technologies
+
+↓
+
+Calculate Confidence
+
+↓
+
+Generate Prospect Score
+
+↓
+
+Store Results
+
+↓
+
+Search / Filter
+
+↓
+
+Export Results
 ```
 
-------------------------------------------------------------------------
+---
 
-# Design Philosophy
+# Project Structure
 
--   Keep the application focused.
--   Prefer reliability over feature count.
--   Use real browser rendering.
--   Modular architecture.
--   Maintainable codebase.
--   Production-ready implementation.
+```text
+ads-detector-docs/
 
-------------------------------------------------------------------------
+docs/
+requirements/
+diagrams/
+examples/
+prompts/
+assets/
+```
 
-# Success Criteria
+---
 
--   Scan large CSV files reliably.
--   Detect supported advertising technologies.
--   Continue when individual websites fail.
--   Export clean CSV reports.
--   Maintain responsive UI.
+# Documentation
 
-------------------------------------------------------------------------
+Project documentation is organized into multiple sections.
 
-# Version
+## Business Documentation
 
-**Version:** 1.0.0 (Documentation)
+- Product Vision
+- Project Scope
+- Business Requirements
+- User Stories
 
-**Status:** In Development
+## Functional Requirements
 
-------------------------------------------------------------------------
+FR-001 through FR-020
+
+## Technical Documentation
+
+- System Architecture
+- Detection Engine
+- Scanner Engine
+- API Specification
+- CSV Processing Engine
+- Playwright Engine
+
+---
+
+# Roadmap
+
+## Version 1
+
+- Local Desktop Web App
+- CSV Upload
+- Website Scanner
+- Ads Detection
+- SQLite Database
+- Dashboard
+- Export System
+
+## Version 2
+
+- AI Detection Improvements
+- Better Confidence Scoring
+- Additional Marketing Technology Detection
+- Resume Scans
+- Scheduled Scans
+
+## Version 3
+
+- AI Prospect Analysis
+- Website Quality Scoring
+- Conversion Opportunity Analysis
+- Team Workspace
+- Cloud Synchronization
+
+---
 
 # License
 
-Private Project
+This project is licensed under the MIT License.
 
-------------------------------------------------------------------------
+---
 
-# Next Document
+# Contributing
 
-**PRODUCT_VISION.md**
+Contributions, feature suggestions, and improvements are welcome.
+
+Please read CONTRIBUTING.md before submitting pull requests.
+
+---
+
+# Status
+
+🚧 Documentation in Progress
+
+Current Version: 1.0 Documentation
+
+Project Type:
+
+Local Desktop Web Application
+
+Development Status:
+
+Planning & Documentation Phase
