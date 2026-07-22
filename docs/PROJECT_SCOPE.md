@@ -1,279 +1,433 @@
-
-# PROJECT_SCOPE.md
-
 # Project Scope
 
-**Project:** Ads Detector
+## Overview
 
-**Version:** 1.0
+Ads Detector is a local-first desktop web application designed to scan website domains, detect advertising technologies, analyze marketing signals, and organize qualified prospects.
 
-**Status:** Approved
-
----
-
-# Purpose
-
-This document defines the exact scope of Version 1.
-
-Every implementation must follow this document.
-
-Features outside this scope must NOT be implemented unless the project owner explicitly approves them.
+This document defines the boundaries of the project, including what features are included, excluded, and planned for future versions.
 
 ---
 
-# Primary Objective
+# Project Goals
 
-Build a local web application that allows users to upload a CSV file containing website domains and automatically determine whether those websites appear to use supported advertising technologies.
+The primary goal of Ads Detector is to create a reliable advertising technology detection and prospect intelligence tool that allows users to:
 
-The application is designed for one task only:
-
-> Detect advertising technologies on websites.
-
----
-
-# In Scope
-
-## CSV Upload
-
-The application shall support uploading CSV files from the local computer.
-
-Supported examples:
-
-```csv
-domain
-google.com
-nike.com
-tesla.com
-```
-
-```csv
-website
-https://google.com
-https://nike.com
-```
-
-```csv
-Company,Website
-Google,google.com
-Nike,nike.com
-```
-
-The application must automatically detect the website/domain column.
+- Scan multiple websites automatically
+- Detect advertising platforms
+- Analyze detection confidence
+- Organize prospects
+- Export qualified results
 
 ---
 
-## Website Scanning
+# Version 1 Scope
 
-The application shall:
+Version 1 focuses on creating a complete local desktop web application.
 
+The application will provide the following capabilities:
+
+---
+
+# 1. CSV Management Module
+
+## Included
+
+Users can:
+
+- Upload CSV files
+- Validate CSV structure
+- Detect domain columns automatically
 - Normalize domains
-- Validate URLs
-- Open websites using Playwright
-- Wait for JavaScript execution
-- Inspect rendered content
-- Inspect loaded scripts
-- Inspect network requests
-- Return scan results
+- Remove duplicates
+- Create scanning queues
+
+Supported inputs:
+
+```
+example.com
+www.example.com
+https://example.com
+http://example.com
+```
+
+The system will convert all inputs into a standardized format.
 
 ---
 
-## Supported Detection
+# 2. Website Scanner Module
 
-Version 1 shall detect:
+## Included
 
-| Technology | Required |
-|------------|----------|
-| Google Ads | Yes |
-| Google Remarketing | Yes |
-| Meta Pixel | Yes |
-| Microsoft UET | Yes |
-| TikTok Pixel | Yes |
-| LinkedIn Insight | Yes |
-| Pinterest Tag | Yes |
+The scanner will:
 
-No additional advertising platforms shall be included.
+- Launch browser instances
+- Visit websites automatically
+- Render JavaScript content
+- Monitor network requests
+- Analyze website resources
+- Collect detection signals
 
----
+Technology:
 
-## Progress Tracking
-
-The interface shall display:
-
-- Total websites
-- Completed
-- Remaining
-- Failed
-- Current website being scanned
+- Playwright
+- Chromium browser
 
 ---
 
-## Results
+# 3. Advertising Technology Detection Module
 
-Each scanned website shall produce one result.
+## Included Platforms
 
-Required output:
+Version 1 supports detection of:
 
-| Column |
-|----------|
-| Domain |
-| Status |
-| Google Ads |
-| Google Remarketing |
-| Meta Pixel |
-| Microsoft UET |
-| TikTok Pixel |
-| LinkedIn Insight |
-| Pinterest |
-| Result |
-| Scan Time |
+## Google
 
----
+- Google Ads
+- Google Conversion Tracking
+- Google Tag Manager signals
 
-## Export
+## Meta
 
-The application shall export results as CSV.
+- Meta Pixel
 
-The exported CSV shall preserve the original row order.
+## Microsoft
 
----
+- Microsoft UET Tag
 
-# Out of Scope
+## TikTok
 
-The following features are intentionally excluded.
+- TikTok Pixel
 
-## SEO
+## LinkedIn
 
-- Meta Title
-- Meta Description
-- Robots
-- Sitemap
-- Lighthouse
-- SEO Score
+- LinkedIn Insight Tag
+
+## Pinterest
+
+- Pinterest Tag
 
 ---
 
-## Website Performance
+# 4. Detection Intelligence Module
 
-- PageSpeed
-- Core Web Vitals
-- CLS
-- LCP
-- INP
-- FCP
+The system will not only show whether a technology exists.
 
----
+It will also provide:
 
-## Marketing Analysis
+## Detection Confidence
 
-- Contact Extraction
-- Lead Score
-- Opportunity Score
-- AI Audit
-- AI Recommendations
+Levels:
+
+- High
+- Medium
+- Low
+- None
 
 ---
 
-## CRM
+## Detection Reason
 
-- HubSpot
-- Salesforce
-- Pipedrive
-- Zoho
+Example:
+
+```
+Google Ads conversion tag detected
+```
 
 ---
 
-## Authentication
+## Detection Method
 
-- Login
-- Registration
-- Teams
+Example:
+
+```
+Network Request
+JavaScript
+HTML Source
+Cookie
+```
+
+---
+
+## Prospect Score
+
+Each website receives a score based on:
+
+- Number of detected platforms
+- Detection confidence
+- Advertising signals
+
+---
+
+# 5. Database Module
+
+## Included
+
+SQLite database will store:
+
+- Scan history
+- Website results
+- User settings
+- Notes
+- Tags
+- Starred prospects
+- Statistics
+
+No external database server is required.
+
+---
+
+# 6. Dashboard Module
+
+## Included
+
+Dashboard will display:
+
+- Total scans
+- Total websites processed
+- Ads detected count
+- Average confidence
+- Recent activity
+- Previous scans
+
+---
+
+# 7. Prospect Management Module
+
+## Included
+
+Users can:
+
+### Star Prospects
+
+Save important websites.
+
+---
+
+### Add Notes
+
+Example:
+
+```
+Need website redesign discussion
+```
+
+---
+
+### Add Tags
+
+Example:
+
+```
+Hot Lead
+Follow Up
+Contacted
+```
+
+---
+
+### Search
+
+Search by:
+
+- Domain
+- Notes
+- Tags
+
+---
+
+# 8. Filtering Module
+
+Users can filter results by:
+
+- Advertising platform
+- Confidence level
+- Prospect score
+- Scan status
+- Starred status
+- Tags
+
+---
+
+# 9. Export Module
+
+Users can export:
+
+## All Results
+
+Complete scan database.
+
+---
+
+## Filtered Results
+
+Only matching filtered websites.
+
+Example:
+
+```
+Google Ads = YES
+Confidence = HIGH
+```
+
+---
+
+## Selected Results
+
+Only manually selected websites.
+
+---
+
+## Starred Results
+
+Only saved prospects.
+
+---
+
+## Failed Results
+
+Only failed scans.
+
+---
+
+Supported formats:
+
+- CSV
+- Excel
+- JSON
+
+---
+
+# 10. Error Handling Module
+
+The system will handle:
+
+- Website timeout
+- SSL errors
+- DNS errors
+- Website unavailable
+- Browser errors
+- Blocked requests
+
+---
+
+# Version 1 Out of Scope
+
+The following features are NOT included in Version 1.
+
+---
+
+## Cloud Platform
+
+Not included:
+
+- Online dashboard
+- Cloud database
+- Multi-user access
+
+---
+
+## User Authentication
+
+Not included:
+
+- Login system
+- User accounts
 - Permissions
 
 ---
 
-## Database
+## Subscription System
 
-Version 1 shall not require a database.
+Not included:
 
-All processing is temporary and in-memory.
-
----
-
-## Cloud Features
-
-Version 1 shall NOT include:
-
-- Cloud storage
-- Online accounts
-- Remote sync
-- SaaS deployment
-
-The application must operate locally.
+- Payments
+- Billing
+- SaaS plans
 
 ---
 
-# Functional Limits
+## CRM Integration
 
-Version 1 should support:
+Not included:
 
-- CSV Upload
-- Local processing
-- Browser rendering
-- CSV export
-
-No additional business workflows shall be implemented.
+- HubSpot integration
+- Salesforce integration
+- Email automation
 
 ---
 
-# Design Constraints
+## AI Website Analysis
 
-The implementation must use:
+Not included in Version 1:
 
-Frontend
-
-- React
-- Vite
-- TailwindCSS
-
-Backend
-
-- FastAPI
-
-Browser
-
-- Playwright Chromium
-
-Python Version
-
-- 3.12+
+- Website redesign suggestions
+- Copy analysis
+- Conversion optimization recommendations
 
 ---
 
-# Success Criteria
+# Future Scope
 
-Version 1 is complete when the application can:
+Future versions may include:
 
-- Upload CSV
-- Detect domains
-- Scan websites
-- Detect supported advertising technologies
-- Show progress
-- Export results
+## Version 2
 
-No additional functionality is required.
-
----
-
-# Change Management
-
-Any feature outside this document must be considered a Version 2 request.
-
-Version 1 scope must remain stable.
+- Better detection accuracy
+- More advertising platforms
+- Resume scanning
+- Scheduled scans
+- AI-based analysis
 
 ---
 
-# Approval
+## Version 3
 
-This document acts as the official scope definition for the Ads Detector project.
+- Cloud synchronization
+- Team workspace
+- CRM integration
+- Automated outreach
+- AI sales assistant
 
-Future implementation must follow this specification exactly.
+---
+
+# Technical Boundaries
+
+The first version must remain:
+
+- Local-first
+- Simple to deploy
+- Low cost
+- Easy to maintain
+- AI implementation friendly
+
+---
+
+# Scope Summary
+
+Ads Detector Version 1 is a powerful local prospect intelligence application focused on:
+
+```
+CSV Upload
+
+↓
+
+Website Scanning
+
+↓
+
+Advertising Technology Detection
+
+↓
+
+Prospect Qualification
+
+↓
+
+Filtering
+
+↓
+
+Export
+```
+
+The goal is to build a reliable foundation that can later evolve into a complete marketing intelligence platform.
