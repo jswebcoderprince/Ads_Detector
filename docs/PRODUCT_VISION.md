@@ -1,137 +1,240 @@
-# PRODUCT_VISION.md
-
 # Product Vision
 
-## Vision Statement
+## Purpose
 
-Ads Detector exists to help agencies, marketers, and outbound sales
-teams quickly identify websites that are likely investing in paid
-advertising. Instead of manually inspecting hundreds of websites, users
-should be able to upload a CSV and receive a reliable report within
-minutes.
+Ads Detector is a desktop-first local web application designed to help agencies, marketers, freelancers, and lead generation professionals quickly identify businesses that are investing in online advertising.
 
-The application is intentionally focused on one problem: **detecting
-advertising technologies on websites**.
+The application automates the process of scanning websites, detecting advertising technologies, organizing prospects, and exporting qualified leads for outreach campaigns.
 
-------------------------------------------------------------------------
+Instead of manually visiting hundreds or thousands of websites, users can upload a CSV file and receive a structured report containing valuable advertising intelligence within minutes.
+
+---
+
+# Vision Statement
+
+To become the most reliable local advertising technology detection platform for sales prospecting, lead generation, and marketing research.
+
+The application aims to provide fast, accurate, and actionable insights without requiring users to manually inspect websites.
+
+---
 
 # Problem Statement
 
-Manually checking websites for advertising technologies is slow,
-repetitive, and inconsistent.
+Businesses running paid advertising are often high-value prospects.
 
-Common workflow today:
+However, identifying those businesses manually is slow, repetitive, and inefficient.
 
-1.  Open website
-2.  Open browser developer tools
-3.  Search HTML
-4.  Check network requests
-5.  Repeat hundreds of times
+Current solutions are either:
 
-This process does not scale.
+- Too expensive
+- Cloud-based
+- Limited in functionality
+- Focused on analytics rather than prospecting
+- Unable to organize qualified prospects effectively
 
-Ads Detector automates this workflow using a real Chromium browser
-driven by Playwright.
+Agencies and freelancers need a solution that works locally, processes thousands of websites efficiently, and produces export-ready prospect lists.
 
-------------------------------------------------------------------------
+---
 
-# Product Objectives
+# Solution
 
-## Primary Objectives
+Ads Detector provides a complete workflow for advertising technology detection.
 
--   Upload CSV files containing domains.
--   Scan websites automatically.
--   Execute JavaScript before inspection.
--   Detect supported advertising technologies.
--   Export a clean CSV report.
+The application allows users to:
 
-## Secondary Objectives
+- Upload website lists
+- Automatically scan every website
+- Detect advertising technologies
+- Calculate detection confidence
+- Score prospect quality
+- Organize qualified prospects
+- Export filtered results
 
--   Reduce manual research time.
--   Keep the interface extremely simple.
--   Make scans reliable even when some websites fail.
+Everything happens inside a local desktop web application without requiring a cloud subscription.
 
-------------------------------------------------------------------------
+---
 
-# Target Audience
+# Target Users
 
--   Web design agencies
--   Cold email agencies
--   PPC consultants
--   Lead generation specialists
--   Marketing researchers
+The primary users include:
 
-------------------------------------------------------------------------
+- Web Design Agencies
+- Digital Marketing Agencies
+- SEO Agencies
+- PPC Specialists
+- Lead Generation Professionals
+- Cold Email Agencies
+- Freelancers
+- Sales Teams
+- Business Development Teams
+- Marketing Consultants
 
-# Core Principles
+---
 
-1.  One purpose only.
-2.  Local-first.
-3.  Accuracy before speed.
-4.  Real browser rendering.
-5.  Modular architecture.
-6.  Predictable behavior.
-7.  Easy maintenance.
+# Core Objectives
 
-------------------------------------------------------------------------
+The project is built around the following objectives.
 
-# Version 1 Success Definition
+## Automation
 
-Version 1 is successful if a user can:
+Replace manual website inspection with an automated scanning engine.
 
--   Upload a CSV.
--   Scan 100+ websites.
--   Detect supported advertising technologies.
--   View progress in real time.
--   Export results without losing completed work.
+---
 
-------------------------------------------------------------------------
+## Accuracy
 
-# What Version 1 Will NOT Do
+Provide reliable advertising technology detection using multiple detection methods and confidence scoring.
 
-The following are intentionally excluded:
+---
 
--   SEO audits
--   Website speed testing
--   Contact extraction
--   AI recommendations
--   CRM integration
--   User accounts
--   Cloud synchronization
--   Databases
+## Productivity
 
-Keeping scope small improves reliability and reduces maintenance.
+Allow users to process hundreds or thousands of websites with minimal manual work.
 
-------------------------------------------------------------------------
+---
 
-# Guiding Design Philosophy
+## Prospect Qualification
 
-Every feature added to the application must answer one question:
+Help users identify businesses that are more likely to invest in digital services.
 
-> Does this improve advertising technology detection?
+---
 
-If the answer is "no", it does not belong in Version 1.
+## Data Organization
 
-------------------------------------------------------------------------
+Store scan history, notes, tags, and starred prospects for future use.
+
+---
+
+## Easy Export
+
+Allow users to export only the data they need instead of entire scan results.
+
+---
+
+# Product Principles
+
+The application should always remain:
+
+- Fast
+- Accurate
+- Local-first
+- Easy to use
+- Developer friendly
+- AI friendly
+- Highly maintainable
+- Scalable
+- Transparent
+
+---
+
+# Key Capabilities
+
+The final application should provide the following capabilities.
+
+## Website Scanning
+
+Automatically visit websites using a real browser.
+
+---
+
+## Advertising Detection
+
+Detect multiple advertising technologies using different detection strategies.
+
+---
+
+## Detection Intelligence
+
+Generate:
+
+- Detection Status
+- Detection Confidence
+- Detection Reason
+- Detection Method
+- Prospect Score
+
+---
+
+## Prospect Management
+
+Users should be able to:
+
+- Star prospects
+- Add notes
+- Apply custom tags
+- Search results
+- Filter results
+- Sort results
+- Review scan history
+
+---
+
+## Smart Export
+
+Users should be able to export:
+
+- All Results
+- Filtered Results
+- Selected Results
+- Starred Results
+- Failed Scans
+
+Supported formats include:
+
+- CSV
+- Excel
+- JSON
+
+---
 
 # Long-Term Vision
 
-Future versions may add optional modules, but the advertising detection
-engine should remain the foundation of the application.
+The long-term goal is to evolve Ads Detector into a complete prospect intelligence platform.
 
-Potential future modules:
+Future versions may include:
 
--   Additional advertising platforms
--   Scheduling recurring scans
--   Team workspaces
--   Historical scan comparison
--   API integrations
+- AI-powered opportunity analysis
+- Website quality assessment
+- Conversion optimization recommendations
+- Marketing technology detection
+- Team collaboration
+- Cloud synchronization
+- Scheduled scanning
+- CRM integrations
 
-These ideas are outside the scope of Version 1.
+---
 
-------------------------------------------------------------------------
+# Success Criteria
 
-# Exit Criteria
+The project will be considered successful if users can:
 
-This document is complete when all future implementation decisions can
-be evaluated against the product vision above.
+- Scan large website lists efficiently
+- Detect advertising technologies accurately
+- Organize qualified prospects quickly
+- Export targeted lead lists
+- Reduce manual prospect research significantly
+
+---
+
+# Out of Scope (Version 1)
+
+The first version will not include:
+
+- User accounts
+- Team collaboration
+- Cloud storage
+- Subscription billing
+- CRM integrations
+- Scheduled background scans
+- Browser extensions
+- Mobile applications
+
+These features may be considered for future releases.
+
+---
+
+# Vision Summary
+
+Ads Detector is not intended to be just another website scanner.
+
+Its purpose is to become a professional prospect intelligence tool that enables agencies and sales teams to identify high-value businesses, organize qualified leads, and streamline outreach workflows through reliable advertising technology detection.
