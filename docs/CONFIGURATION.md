@@ -39,10 +39,12 @@ Ads Detector loads configuration from the following sources, in order of precede
 - `SCANNER_TIMEOUT_SECONDS` — maximum time allowed per domain scan before it is marked as timed out.
 - `SCANNER_MAX_REDIRECTS` — maximum redirect chain depth followed per domain.
 - `SCANNER_USER_AGENT` — user agent string presented by the automated browser during scans.
+- `SCANNER_ALLOW_HTTP_FALLBACK` — whether to retry a failed `https://` navigation over `http://` (see reference below).
 
 **Detection Engine Settings**
 - `DETECTION_RULESET_PATH` — path to the versioned detection rule definitions.
-- `DETECTION_CONFIDENCE_THRESHOLDS` — thresholds mapping numeric scores to High/Medium/Low labels, per `CONFIDENCE_SCORING.md`.
+- `DETECTION_CONFIDENCE_HIGH_THRESHOLD` — lowest score labelled **High** confidence (see reference below).
+- `DETECTION_CONFIDENCE_MEDIUM_THRESHOLD` — lowest score labelled **Medium** confidence (see reference below).
 
 **CSV Processing Settings**
 - `CSV_MAX_FILE_SIZE_MB` — maximum accepted upload size.
@@ -52,10 +54,63 @@ Ads Detector loads configuration from the following sources, in order of precede
 - `EXPORT_MAX_ROWS` — maximum number of rows permitted in a single export operation.
 - `EXPORT_OUTPUT_DIR` — directory where generated export files are temporarily stored before download.
 
+### Detailed Parameter Reference
+
+The parameters below control detection scoring and scanner navigation behavior. All three are read through the centralized configuration object and can be changed without any code change.
+
+#### `DETECTION_CONFIDENCE_HIGH_THRESHOLD`
+
+- **Purpose:** The lowest confidence score that is labelled **High**. Together with `DETECTION_CONFIDENCE_MEDIUM_THRESHOLD`, it defines the numeric-to-categorical mapping (High / Medium / Low) applied to every detection, as specified in `CONFIDENCE_SCORING.md`. This satisfies the requirement that confidence bands be configurable without code changes.
+- **Default value:** `80`
+- **Allowed values:** An integer from `1` to `100`. Must be **greater than** `DETECTION_CONFIDENCE_MEDIUM_THRESHOLD`. Scores at or above this value are labelled High; the combined constraint is `1 ≤ MEDIUM < HIGH ≤ 100`.
+- **Notes:** The canonical bands are defined by `FR-008_CONFIDENCE_SCORING.md` (the single source of truth): High 80–100, Medium 50–79, Low 20–49. An invalid value (out of range, or not greater than the medium threshold) is rejected at startup rather than during a scan.
+
+#### `DETECTION_CONFIDENCE_MEDIUM_THRESHOLD`
+
+- **Purpose:** The lowest confidence score that is labelled **Medium**. Scores at or above this value but below `DETECTION_CONFIDENCE_HIGH_THRESHOLD` are Medium; scores below it (down to 1) are Low. A score of `0` is reserved for "not detected" and is never stored as a detection.
+- **Default value:** `50`
+- **Allowed values:** An integer from `1` to `100`. Must be **less than** `DETECTION_CONFIDENCE_HIGH_THRESHOLD` (i.e. `1 ≤ MEDIUM < HIGH ≤ 100`).
+- **Notes:** Because every detected technology scores at least `1`, scores of `1–19` fall below the canonical Low band's lower bound of `20` but are still shown as Low — there is no "detected but None" state.
+
+#### `SCANNER_ALLOW_HTTP_FALLBACK`
+
+- **Purpose:** Controls whether the Scanner Engine retries a domain over `http://` when the initial `https://` navigation fails at the connection level (DNS failure, connection refused, TLS error). This lets the scanner reach sites that are not served over HTTPS while still preferring HTTPS first. A **timeout** is never retried over `http://`, since a reachable-but-slow site would likely time out again; only connection-level failures trigger the fallback.
+- **Default value:** `true`
+- **Allowed values:** A boolean. Accepted true forms: `true`, `1`, `yes`, `on`; any other value (e.g. `false`, `0`, `no`, `off`) is treated as false. Parsing is case-insensitive. If the key is absent, it defaults to `true`.
+- **Notes:** This parameter is optional; omitting it preserves the default behavior.
+
 ### Configuration Validation
 
 - On application startup, all required configuration values are validated for presence and type correctness.
 - Missing required configuration values must halt application startup with a descriptive error rather than allowing the application to run with undefined behavior.
+- Confidence threshold values are validated to satisfy `1 ≤ DETECTION_CONFIDENCE_MEDIUM_THRESHOLD < DETECTION_CONFIDENCE_HIGH_THRESHOLD ≤ 100`; a violation halts startup.
+
+### Example Configuration
+
+The following shows these parameters in `config.default.yaml` (checked-in defaults) and as environment-variable overrides.
+
+**`config.default.yaml`:**
+
+```yaml
+# Detection Engine
+DETECTION_RULESET_PATH: src/detection/rules
+DETECTION_CONFIDENCE_HIGH_THRESHOLD: 80
+DETECTION_CONFIDENCE_MEDIUM_THRESHOLD: 50
+
+# Scanner Engine
+SCANNER_ALLOW_HTTP_FALLBACK: true
+```
+
+**Environment-variable overrides (highest precedence):**
+
+```bash
+# Require stronger evidence before labelling a detection High/Medium
+export DETECTION_CONFIDENCE_HIGH_THRESHOLD=90
+export DETECTION_CONFIDENCE_MEDIUM_THRESHOLD=60
+
+# Only ever scan over HTTPS; never fall back to http://
+export SCANNER_ALLOW_HTTP_FALLBACK=false
+```
 
 ## Functional Requirements
 
