@@ -590,20 +590,22 @@ Final Confidence
 
 ---
 
-Confidence levels:
+Confidence levels (canonical bands from `FR-008_CONFIDENCE_SCORING.md`, the
+single source of truth for confidence thresholds; see also
+`CONFIDENCE_SCORING.md`):
 
 ```
-90-100
+80-100
 
 High
 
 
-60-89
+50-79
 
 Medium
 
 
-Below 60
+20-49
 
 Low
 ```

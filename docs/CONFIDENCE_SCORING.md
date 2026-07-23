@@ -22,11 +22,19 @@ Ads Detector uses a rule-based, additive confidence scoring model. Each detectio
 
 **Score Scale:**
 - Confidence scores are expressed on a 0–100 numeric scale.
-- Scores are additionally mapped to categorical labels for dashboard display:
-  - **High Confidence:** 75–100
-  - **Medium Confidence:** 40–74
-  - **Low Confidence:** 1–39
+- Scores are additionally mapped to categorical labels for dashboard display.
+  These bands are the canonical definition from `FR-008_CONFIDENCE_SCORING.md`,
+  which is the single source of truth for confidence thresholds across the
+  project:
+  - **High Confidence:** 80–100
+  - **Medium Confidence:** 50–79
+  - **Low Confidence:** 20–49
   - **No Detection:** 0 (technology not present in results)
+
+  Note: because every detected technology is assigned a score of at least 1
+  (see Functional Requirements), scores of 1–19 fall below the Low band's
+  lower bound but are still shown as Low — there is no "detected but None"
+  state. A score of 0 is reserved exclusively for "not detected".
 
 ### Evidence Weighting
 
